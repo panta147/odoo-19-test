@@ -1,46 +1,17 @@
-# Keep Render build simple and use the local Odoo source in the repo
+# Minimal dependencies for Render build with local Odoo source
 psycopg2-binary==2.9.9
-
-# Key dependencies
 requests==2.31.0
 Werkzeug==3.0.1
-lxml==4.9.3
-# Pillow==10.0.0
-reportlab==4.0.7
-cryptography==41.0.7
-pyopenssl==23.3.0
-qrcode==7.4.2
 python-dateutil==2.8.2
 PyYAML==6.0.1
+Jinja2==3.1.2
+markupsafe==2.1.3
 chardet==5.2.0
 defusedxml==0.7.1
-ebaysdk
 freezegun==1.5.0
 idna==3.6
-Jinja2==3.1.2
-libsass==0.22.0
-lxml-html-clean==0.1.1
-markupsafe==2.1.3
-num2words==0.5.13
-openpyxl==3.1.2
 passlib==1.7.4
-phonenumbers==8.13.0
-# Pillow==10.0.0
-pyldap
-pyngrok==7.0.5
+pytz==2023.3.post1
+qrcode==7.4.2
+cryptography==41.0.7
 pyopenssl==23.3.0
-PyPDF2
-pyserial
-python-stdnum
-python-dateutil
-pytz
-PyYAML
-qrcode
-requests
-SocketIO
-urllib3
-vobject
-Werkzeug
-XlsxWriter
-xlwt
-zeep
