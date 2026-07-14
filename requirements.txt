@@ -1,7 +1,4 @@
-# Odoo 19 - Install from official repository
-odoo[geolocation,geospatial]==19.0.1.0.0
-
-# Database
+# Keep Render build simple and use the local Odoo source in the repo
 psycopg2-binary==2.9.9
 
 # Key dependencies
