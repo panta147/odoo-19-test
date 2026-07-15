@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- FRS §10 Pipeline Stages (docs/account_opening.md §1). team_ids deliberately
+         left empty here - branches/Sales Teams are created dynamically per this
+         project's runtime model (crm_lead's auto-assignment picks a per-branch
+         team, not a fixed seed record), so there is no fixed team to attach at
+         module-install time. This means these stages currently show up in every
+         branch's stage picker/kanban regardless of pipeline - an accepted, FRS-
+         consistent limitation (Sales Teams are per-branch only in the FRS, with
+         no per-pipeline sub-team concept - see feedback-odoo19-gotchas memory,
+         2026-07-13 entry) rather than a bug to engineer around. -->
+    <record id="stage_enquiry" model="crm.stage">
+        <field name="name">Enquiry</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="stage_document_collection" model="crm.stage">
+        <field name="name">Document Collection</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="stage_account_opening_in_process" model="crm.stage">
+        <field name="name">Account Opening in Process</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="stage_closed_won" model="crm.stage">
+        <field name="name">Closed - Won</field>
+        <field name="sequence">4</field>
+        <field name="is_won">True</field>
+    </record>
+    <record id="stage_closed_lost" model="crm.stage">
+        <field name="name">Closed - Lost</field>
+        <field name="sequence">5</field>
+    </record>
+</odoo>

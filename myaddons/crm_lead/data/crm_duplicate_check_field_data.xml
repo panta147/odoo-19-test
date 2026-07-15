@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Seeds crm.lead's duplicate-check fields to match the previously
+         hardcoded _duplicate_check_fields tuple exactly. noupdate="1" so an
+         admin's later reconfiguration via Bank CRM > Configuration >
+         Duplicate Detection Fields survives module upgrades.
+         See docs/duplicate_detection.md. -->
+    <record id="dup_check_lead_phone" model="crm.duplicate.check.field">
+        <field name="res_model_id" ref="crm.model_crm_lead"/>
+        <field name="field_id" ref="crm.field_crm_lead__phone"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="dup_check_lead_email_from" model="crm.duplicate.check.field">
+        <field name="res_model_id" ref="crm.model_crm_lead"/>
+        <field name="field_id" ref="crm.field_crm_lead__email_from"/>
+        <field name="sequence">20</field>
+    </record>
+    <record id="dup_check_lead_citizenship_number" model="crm.duplicate.check.field">
+        <field name="res_model_id" ref="crm.model_crm_lead"/>
+        <field name="field_id" ref="crm_lead.field_crm_lead__citizenship_number"/>
+        <field name="sequence">30</field>
+    </record>
+    <record id="dup_check_lead_national_id_number" model="crm.duplicate.check.field">
+        <field name="res_model_id" ref="crm.model_crm_lead"/>
+        <field name="field_id" ref="crm_lead.field_crm_lead__national_id_number"/>
+        <field name="sequence">40</field>
+    </record>
+    <record id="dup_check_lead_passport_number" model="crm.duplicate.check.field">
+        <field name="res_model_id" ref="crm.model_crm_lead"/>
+        <field name="field_id" ref="crm_lead.field_crm_lead__passport_number"/>
+        <field name="sequence">50</field>
+    </record>
+    <record id="dup_check_lead_vat" model="crm.duplicate.check.field">
+        <field name="res_model_id" ref="crm.model_crm_lead"/>
+        <field name="field_id" ref="crm_lead.field_crm_lead__vat"/>
+        <field name="sequence">60</field>
+    </record>
+</odoo>

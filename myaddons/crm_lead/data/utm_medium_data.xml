@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record model="utm.medium" id="utm_medium_staff_referral">
+        <field name="name">Staff Referral</field>
+        <field name="channel_category">referral</field>
+    </record>
+
+    <!-- FRS capture-channel table (docs/lead.md §1) tags each channel Digital/
+         Offline/Referral. These three native utm.medium records map cleanly
+         onto named FRS channels; the remaining FRS channels (nBank In-App,
+         Social Media, Walk-In, Tele-In/Tele-Out beyond generic Phone, Field
+         Activities, Existing Customer/Partner/Campaign Referral) don't yet
+         have a seed record - deliberately deferred, not invented, per the
+         2026-07-13 scoping decision (see feedback-odoo19-gotchas memory). -->
+    <record id="utm.utm_medium_website" model="utm.medium">
+        <field name="channel_category">digital</field>
+    </record>
+    <record id="utm.utm_medium_email" model="utm.medium">
+        <field name="channel_category">digital</field>
+    </record>
+    <record id="utm.utm_medium_phone" model="utm.medium">
+        <field name="channel_category">offline</field>
+    </record>
+</odoo>

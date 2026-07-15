@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_action_account_opening" model="ir.actions.act_window">
+        <field name="name">Account Opening</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,list,form,activity</field>
+        <field name="domain">[('product_interested_id.product_family', '=', 'account_opening')]</field>
+        <field name="context">{'default_type': 'opportunity'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Account Opening leads yet
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="crm_lead_menu_account_opening"
+        name="Account Opening"
+        parent="crm.crm_menu_sales"
+        action="crm_lead_action_account_opening"
+        sequence="5"/>
+
+    <record id="crm_lead_view_form_inherit_crm_account_opening" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.crm.account.opening</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="account_opening_details" string="Account Opening"
+                    invisible="product_interested_id and product_interested_id.product_family != 'account_opening'">
+                    <group>
+                        <group string="Enquiry Details">
+                            <field name="expected_initial_deposit"/>
+                            <field name="expected_account_opening_date"/>
+                            <field name="deposit_term"
+                                invisible="not product_interested_id or not product_interested_id.is_fixed_deposit"/>
+                        </group>
+                        <group string="Integration Status">
+                            <field name="kycms_crm_id"/>
+                            <field name="kycms_status" readonly="1"/>
+                            <field name="aos_crm_id"/>
+                            <field name="aos_status" readonly="1"/>
+                            <field name="aos_account_number" readonly="1"/>
+                            <field name="aos_cif_id" readonly="1"/>
+                            <field name="aos_rejection_reason" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

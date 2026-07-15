@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_transfer_wizard_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.transfer.wizard.form</field>
+        <field name="model">crm.lead.transfer.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="lead_id" invisible="1"/>
+                <group>
+                    <field name="target_company_id"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" string="Request Transfer" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="crm_lead_transfer_wizard_action" model="ir.actions.act_window">
+        <field name="name">Transfer Lead</field>
+        <field name="res_model">crm.lead.transfer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_lead_id': active_id}</field>
+    </record>
+
+    <record id="crm_lead_view_form_inherit_crm_lead" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.crm.lead</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="%(crm_lead_transfer_wizard_action)d" string="Transfer Lead"
+                    type="action" invisible="not id"/>
+                <button name="action_approve_transfer" string="Approve Transfer"
+                    type="object" invisible="transfer_state != 'pending'"/>
+                <button name="action_reject_transfer" string="Reject Transfer"
+                    type="object" invisible="transfer_state != 'pending'"/>
+            </header>
+            <notebook position="inside">
+                <page name="bank_crm_lead_details" string="Lead Details">
+                    <group>
+                        <group string="Customer Classification">
+                            <field name="customer_type"/>
+                            <field name="customer_status"/>
+                            <field name="product_interested_id"/>
+                            <field name="preferred_company_id"/>
+                            <field name="referred_by_id"/>
+                            <field name="staff_id"/>
+                            <field name="account_number"/>
+                        </group>
+                        <group string="Identification (synced with Contact)">
+                            <field name="citizenship_number"/>
+                            <field name="national_id_number"/>
+                            <field name="passport_number"/>
+                            <field name="vat"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Corporate Details" invisible="customer_type != 'corporate'">
+                            <field name="nature_of_business"/>
+                            <field name="annual_turnover"/>
+                            <field name="years_of_operation"/>
+                            <field name="requested_loan_amount"/>
+                            <field name="purpose"/>
+                        </group>
+                        <group string="Follow-up SLA">
+                            <field name="sla_deadline" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Transfer Status" invisible="not transfer_state">
+                        <field name="transfer_target_company_id" readonly="1"/>
+                        <field name="transfer_requested_by_id" readonly="1"/>
+                        <field name="transfer_state" readonly="1"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
